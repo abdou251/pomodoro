@@ -35,12 +35,7 @@ function Tasks(props) {
     setList((list) => list.filter((item) => item.id !== id))
     console.log(list)
   }
-  const tasks = () => {
-    setIsTask(true)
-    if (list == [id, task]) {
-      setIsTask(false)
-    }
-  }
+
   console.log(list)
   return (
     <>
