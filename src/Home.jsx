@@ -8,28 +8,35 @@ import Tasks from './Tasks'
 
 function Home() {
   const { hover } = useHover()
+  const [est, setEst] = React.useState(1)
   const [pomodoro, setPomodoro] = React.useState(true)
   const [shortBreak, setShortBreak] = React.useState(false)
   const [longBreak, setLongBreak] = React.useState(false)
   const [hov, setHov] = React.useState(hover.pomoHover)
+  const [taskBg, setTaskBg] = React.useState('bg-red-200')
 
   const podo = () => {
     setPomodoro(true)
     setShortBreak(false)
     setLongBreak(false)
     setHov(hover.pomoHover)
+
+    setTaskBg('bg-red-300')
   }
   const longB = () => {
     setPomodoro(false)
     setShortBreak(false)
     setLongBreak(true)
     setHov(hover.longHover)
+
+    setTaskBg('bg-green-200')
   }
   const shortB = () => {
     setPomodoro(false)
     setShortBreak(true)
     setLongBreak(false)
     setHov(hover.shortHover)
+    setTaskBg('bg-blue-200')
   }
 
   const menu = (
@@ -45,38 +52,47 @@ function Home() {
       </button>
     </div>
   )
-  const bg = 'w-screen h-screen py-16  flex flex-col justify-start items-center'
-  const timer = 'block mx-48 my-8 py-2  font-extrabold text-white text-7xl'
+  const bg = 'w-screen h-100 py-16  flex flex-col justify-start items-center '
+  const timer = 'block mx-48 my-8 py-2  font-extrabold text-white text-7xl '
 
   /*...........................................*/
   if (pomodoro) {
     return (
-      <div className={`${bg} bg-red-400`}>
-        <div className='bg-red-300 w-2/3 rounded-xl py-8'>
-          {menu}
-          <Timer hov={hov} timer={timer} />
+      <div className='h-screen bg-red-300 '>
+        {' '}
+        <div className={`${bg} bg-red-300 `}>
+          <div className='bg-red-200  rounded-xl py-8'>
+            {menu}
+            <Timer est={est} setEst={setEst} hov={hov} timer={timer} />
+          </div>
+          <Tasks est={est} setEst={setEst} hov={hov} taskBg={taskBg} />
         </div>
-        <Tasks hov={hov} />
       </div>
     )
   } else if (shortBreak) {
     return (
-      <div className={`${bg} bg-blue-300`}>
-        <div className='bg-blue-200 w-2/3 rounded-xl py-8'>
-          {menu}
-          <ShortBreak hov={hov} timer={timer} />
+      <div className='h-screen bg-blue-300 '>
+        {' '}
+        <div className={`${bg} bg-blue-300`}>
+          <div className='bg-blue-200  rounded-xl py-8'>
+            {menu}
+            <ShortBreak hov={hov} timer={timer} />
+          </div>
+          <Tasks hov={hov} taskBg={taskBg} />
         </div>
-        <Tasks hov={hov} />
       </div>
     )
   } else if (longBreak) {
     return (
-      <div className={`${bg} bg-green-300`}>
-        <div className='bg-green-200 w-2/3 rounded-xl py-8'>
-          {menu}
-          <LongBreak hov={hov} timer={timer} />
+      <div className='h-screen bg-green-300 '>
+        {' '}
+        <div className={`${bg} bg-green-300`}>
+          <div className='bg-green-200 rounded-xl py-8'>
+            {menu}
+            <LongBreak hov={hov} timer={timer} />
+          </div>
+          <Tasks hov={hov} taskBg={taskBg} />
         </div>
-        <Tasks hov={hov} />
       </div>
     )
   }

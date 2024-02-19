@@ -1,18 +1,32 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import uniqid from 'uniqid'
 
 function Tasks(props) {
-  const { hov } = props
+  const { hov, est, setEst, taskBg } = props
   const id = uniqid()
 
   const [isEdit, setIsEdit] = useState({ id: id, state: false })
 
-  const [isTask, setIsTask] = useState(false)
   const [task, setTask] = useState('')
-  const [list, setList] = useState([])
+
   const [newTask, setNewTask] = useState('')
+
+  const [list, setList] = useState(() => {
+    try {
+      const storedList = JSON.parse(localStorage.getItem('taskList'))
+      return storedList || []
+    } catch (error) {
+      console.error('Error retrieving tasks from local storage:', error)
+      return []
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('taskList', JSON.stringify(list))
+  }, [list])
+
   const handleClick = (e) => {
     e.preventDefault()
     if (task) {
@@ -36,10 +50,9 @@ function Tasks(props) {
     console.log(list)
   }
 
-  console.log(list)
   return (
     <>
-      <div className='max-w-md mx-auto'>
+      <div className='w-md'>
         <form className='my-16' onSubmit={handleClick}>
           <label
             htmlFor='task'
@@ -55,22 +68,25 @@ function Tasks(props) {
           />
           <button className={hov}>Submit</button>
         </form>
-        {list.map((item) => {
-          return (
-            <Items
-              key={item.id}
-              {...item}
-              remove={remove}
-              setTask={setTask}
-              isEdit={isEdit}
-              setIsEdit={setIsEdit}
-              edit={edit}
-              newTask={newTask}
-              setNewTask={setNewTask}
-            />
-          )
-        })}
       </div>
+      {list.map((item) => {
+        return (
+          <Items
+            key={item.id}
+            {...item}
+            remove={remove}
+            setTask={setTask}
+            isEdit={isEdit}
+            setIsEdit={setIsEdit}
+            edit={edit}
+            newTask={newTask}
+            setNewTask={setNewTask}
+            est={est}
+            setEst={setEst}
+            taskBg={taskBg}
+          />
+        )
+      })}
     </>
   )
 }
@@ -78,29 +94,44 @@ function Tasks(props) {
 const Items = (props) => {
   const [isChecked, setIsChecked] = useState(false)
 
-  const { id, task, remove, isEdit, edit, newTask, setIsEdit, setNewTask } =
-    props
+  const {
+    id,
+    task,
+    remove,
+    isEdit,
+    edit,
+    newTask,
+    setIsEdit,
+    setNewTask,
+    taskBg,
+  } = props
+
   return (
-    <div key={id} className='max-w-md mx-auto flex justify-between my-4 '>
-      <div className='flex justify-between items-center gap-2'>
+    <div
+      key={id}
+      className={`${taskBg} rounded-2xl flex justify-between items-center my-4 w-1/2 p-4 `}
+    >
+      <div className='flex flex-col justify-between items-center gap-2'>
         {isEdit.state === true && isEdit.id === id ? (
-          <input
-            type='text'
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            className='w-auto h-auto p-2 rounded-lg text-black'
-          ></input>
+          <div className='flex flex-col justify-between items-center gap-2'>
+            <input
+              type='text'
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              className='w-auto h-auto p-2 rounded-lg text-black'
+            ></input>
+          </div>
         ) : (
-          <>
+          <div className='flex items-center'>
             {' '}
             <input
               checked={isChecked}
               onChange={() => setIsChecked(!isChecked)}
-              className='h-4 w-4'
+              className='h-4 w-5 mr-1'
               type='checkBox'
             />
-            <h2>{task}</h2>
-          </>
+            <h2 className='text-white font-medium text-xl'>{task}</h2>
+          </div>
         )}
       </div>
       <div className='flex gap-1'>

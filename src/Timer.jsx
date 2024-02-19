@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
-import { useHover } from './hoverContext'
 
 export default function Timer(props) {
-  const { hov, timer } = props
-  const { hover } = useHover()
+  const { hov, timer, est } = props
 
-  const [minutes, setMinutes] = React.useState(25)
+  const [minutes, setMinutes] = React.useState(est * 25)
   const [seconds, setSeconds] = React.useState(0)
   const [isActive, setIsActive] = React.useState(false)
 
