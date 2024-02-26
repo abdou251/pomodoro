@@ -8,7 +8,7 @@ import Tasks from './Tasks'
 
 function Home() {
   const { hover } = useHover()
-  const [est, setEst] = React.useState(1)
+
   const [pomodoro, setPomodoro] = React.useState(true)
   const [shortBreak, setShortBreak] = React.useState(false)
   const [longBreak, setLongBreak] = React.useState(false)
@@ -63,9 +63,9 @@ function Home() {
         <div className={`${bg} bg-red-300 `}>
           <div className='bg-red-200  rounded-xl py-8'>
             {menu}
-            <Timer est={est} setEst={setEst} hov={hov} timer={timer} />
+            <Timer hov={hov} timer={timer} />
           </div>
-          <Tasks est={est} setEst={setEst} hov={hov} taskBg={taskBg} />
+          <Tasks hov={hov} taskBg={taskBg} />
         </div>
       </div>
     )

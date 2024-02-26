@@ -2,9 +2,9 @@
 import React from 'react'
 
 export default function Timer(props) {
-  const { hov, timer, est } = props
+  const { hov, timer } = props
 
-  const [minutes, setMinutes] = React.useState(est * 25)
+  const [minutes, setMinutes] = React.useState(25)
   const [seconds, setSeconds] = React.useState(0)
   const [isActive, setIsActive] = React.useState(false)
 
@@ -17,7 +17,7 @@ export default function Timer(props) {
           if (minutes === 0) {
             clearInterval(interval)
             setIsActive(false)
-            alert('Pomodoro session completed! Take a break.')
+            alert('Take a break!')
           } else {
             setMinutes(minutes - 1)
             setSeconds(59)

@@ -6,7 +6,7 @@ import { useHover } from './hoverContext'
 const ShortBreak = (props) => {
   const { hov, timer } = props
   const { hover } = useHover()
-  const [minutes, setMinutes] = React.useState(5)
+  const [minutes, setMinutes] = React.useState(1)
   const [seconds, setSeconds] = React.useState(0)
   const [isActive, setIsActive] = React.useState(false)
 
@@ -19,7 +19,7 @@ const ShortBreak = (props) => {
           if (minutes === 0) {
             clearInterval(interval)
             setIsActive(false)
-            alert('Pomodoro session completed! Take a break.')
+            alert('Break over!.')
           } else {
             setMinutes(minutes - 1)
             setSeconds(59)

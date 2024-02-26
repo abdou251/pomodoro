@@ -20,7 +20,7 @@ const LongBreak = (props) => {
           if (minutes === 0) {
             clearInterval(interval)
             setIsActive(false)
-            alert('Pomodoro session completed! Take a break.')
+            alert('Break over!')
           } else {
             setMinutes(minutes - 1)
             setSeconds(59)
