@@ -40,7 +40,7 @@ function Home() {
   }
 
   const menu = (
-    <div className=''>
+    <div className='phone:flex tablet:flex-row tablet:gap-1 justify-center phone:flex-col gap-3 '>
       <button className={`${hov}`} onClick={podo}>
         Pomodoro
       </button>
@@ -52,8 +52,9 @@ function Home() {
       </button>
     </div>
   )
-  const bg = 'w-screen h-100 py-16  flex flex-col justify-start items-center '
-  const timer = 'block mx-48 my-8 py-2  font-extrabold text-white text-7xl '
+  const bg = 'w-screen h-100 py-16 flex flex-col justify-start items-center '
+  const timer =
+    'block lg:mx-48 sm:mx-11 my-8 py-2 font-extrabold text-white text-7xl'
 
   /*...........................................*/
   if (pomodoro) {
@@ -61,7 +62,7 @@ function Home() {
       <div className='h-screen bg-red-300 '>
         {' '}
         <div className={`${bg} bg-red-300 `}>
-          <div className='bg-red-200  rounded-xl py-8'>
+          <div className='bg-red-200 rounded-xl py-8 '>
             {menu}
             <Timer hov={hov} timer={timer} />
           </div>
@@ -74,7 +75,7 @@ function Home() {
       <div className='h-screen bg-blue-300 '>
         {' '}
         <div className={`${bg} bg-blue-300`}>
-          <div className='bg-blue-200  rounded-xl py-8'>
+          <div className='bg-blue-200 rounded-xl py-8'>
             {menu}
             <ShortBreak hov={hov} timer={timer} />
           </div>

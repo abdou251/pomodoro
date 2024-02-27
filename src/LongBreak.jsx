@@ -46,7 +46,7 @@ const LongBreak = (props) => {
 
   const resetTimer = () => {
     setIsActive(false)
-    setMinutes(25)
+    setMinutes(15)
     setSeconds(0)
   }
   console.log(hov)

@@ -6,7 +6,7 @@ import { useHover } from './hoverContext'
 const ShortBreak = (props) => {
   const { hov, timer } = props
   const { hover } = useHover()
-  const [minutes, setMinutes] = React.useState(1)
+  const [minutes, setMinutes] = React.useState(5)
   const [seconds, setSeconds] = React.useState(0)
   const [isActive, setIsActive] = React.useState(false)
 
@@ -45,7 +45,7 @@ const ShortBreak = (props) => {
 
   const resetTimer = () => {
     setIsActive(false)
-    setMinutes(25)
+    setMinutes(5)
     setSeconds(0)
   }
 

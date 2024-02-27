@@ -52,7 +52,7 @@ function Tasks(props) {
 
   return (
     <>
-      <div className='w-md'>
+      <div className='w-md px-8'>
         <form className='my-16' onSubmit={handleClick}>
           <label
             htmlFor='task'
@@ -107,67 +107,69 @@ const Items = (props) => {
   } = props
 
   return (
-    <div
-      key={id}
-      className={`${taskBg} rounded-2xl flex justify-between items-center my-4 w-1/2 p-4 `}
-    >
-      <div className='flex flex-col justify-between items-center gap-2'>
-        {isEdit.state === true && isEdit.id === id ? (
-          <div className='flex flex-col justify-between items-center gap-2'>
-            <input
-              type='text'
-              value={newTask}
-              onChange={(e) => setNewTask(e.target.value)}
-              className='w-auto h-auto p-2 rounded-lg text-black'
-            ></input>
-          </div>
-        ) : (
-          <div className='flex items-center'>
-            {' '}
-            <input
-              checked={isChecked}
-              onChange={() => setIsChecked(!isChecked)}
-              className='h-4 w-5 mr-1'
-              type='checkBox'
-            />
-            <h2 className='text-white font-medium text-xl'>{task}</h2>
-          </div>
-        )}
-      </div>
-      <div className='flex gap-1'>
-        {isEdit.state === true && isEdit.id === id ? (
-          <>
-            {' '}
-            <button
-              className='bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md'
-              onClick={() => edit(id)}
-            >
-              save
-            </button>
-            <button
-              className='bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md'
-              onClick={() => setIsEdit({ id: id, state: false })}
-            >
-              cancel
-            </button>
-          </>
-        ) : (
-          <>
-            {' '}
-            <button
-              className='bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md'
-              onClick={() => setIsEdit({ id: id, state: true })}
-            >
-              edit
-            </button>
-            <button
-              className='bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md'
-              onClick={() => remove(id)}
-            >
-              remove
-            </button>
-          </>
-        )}
+    <div className='phone:px-4 phone:w-full tablet:px-4 tablet:w-4/6'>
+      <div
+        key={id}
+        className={`${taskBg} rounded-2xl flex justify-between items-center my-4 w-full p-4`}
+      >
+        <div className='flex flex-col justify-between items-center gap-2'>
+          {isEdit.state === true && isEdit.id === id ? (
+            <div className='flex flex-col justify-between items-center gap-1'>
+              <input
+                type='text'
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                className='phone:w-40 tablet:w-fit h-auto p-2 rounded-lg text-black'
+              ></input>
+            </div>
+          ) : (
+            <div className='flex items-center'>
+              {' '}
+              <input
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+                className='h-4 w-5 mr-1'
+                type='checkBox'
+              />
+              <h2 className='text-white font-medium text-xl'>{task}</h2>
+            </div>
+          )}
+        </div>
+        <div className='flex gap-1'>
+          {isEdit.state === true && isEdit.id === id ? (
+            <>
+              {' '}
+              <button
+                className='bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md'
+                onClick={() => edit(id)}
+              >
+                save
+              </button>
+              <button
+                className='bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md'
+                onClick={() => setIsEdit({ id: id, state: false })}
+              >
+                cancel
+              </button>
+            </>
+          ) : (
+            <>
+              {' '}
+              <button
+                className='bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md'
+                onClick={() => setIsEdit({ id: id, state: true })}
+              >
+                edit
+              </button>
+              <button
+                className='bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md'
+                onClick={() => remove(id)}
+              >
+                remove
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
