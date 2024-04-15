@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 
 const HoverContext = createContext(undefined)
+// eslint-disable-next-line react/prop-types
 export const HoverProvider = ({ children }) => {
   const [hover] = useState({
     pomoHover:

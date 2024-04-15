@@ -62,7 +62,7 @@ function Home() {
       <div className='h-screen bg-red-300 '>
         {' '}
         <div className={`${bg} bg-red-300 `}>
-          <div className='bg-red-200 rounded-xl py-8 '>
+          <div className='bg-red-200 rounded-xl py-8  '>
             {menu}
             <Timer hov={hov} timer={timer} />
           </div>
