@@ -21,7 +21,7 @@ function Home() {
     setLongBreak(false)
     setHov(hover.pomoHover)
 
-    setTaskBg('bg-red-300')
+    setTaskBg('bg-red-200')
   }
   const longB = () => {
     setPomodoro(false)
